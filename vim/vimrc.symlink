@@ -1,0 +1,21 @@
+let mapleader=",,"
+execute pathogen#infect()
+filetype plugin indent on
+
+set nocompatible
+syntax on 
+set number
+set smartindent
+set autoindent
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set nowrap
+set noswapfile
+
+" yay :bd now only closes the buffer, not the pane 
+map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>
+
+au BufWritePost *.elm make
+au FileType elm set makeprg=elm-make\ Main.elm
+au FileType elm copen<CR><CRTL>WW
