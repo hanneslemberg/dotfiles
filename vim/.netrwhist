@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/Users/hannes/Documents/Programming/Preisrechner'
-let g:netrw_dirhist_2='/usr/share/vim/vim73'
-let g:netrw_dirhist_3='/Users/hannes/.dotfiles/.git/modules/vim/bundle/elm.vim'
-let g:netrw_dirhist_4='/Users/hannes/.dotfiles/.git/modules'

@@ -25,3 +25,6 @@ set smartcase
 au BufWritePost *.elm make
 au FileType elm set makeprg=elm-make\ Main.elm
 "au FileType elm copen<CR><CRTL>WW
+
+" typescript
+au BufRead,BufNewFile *.ts set filetype=javascript
