@@ -71,9 +71,20 @@ directory_name() {
   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
 }
 
+function gitStashCount() {
+  stashNb=`git stash list 2> /dev/null | wc -l | tr -d '[[ ]]'`
+  if [ "$stashNb" != "0" ]
+  then
+    echo -n " %F{blue}($stashNb)%f"
+  fi
+
+  echo ''
+}
+
 export PROMPT=$'\n$(rb_prompt)in $(directory_name) $(git_dirty)$(need_push)\n› '
+export RPROMPT='$(gitStashCount)'
 set_prompt () {
-  export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
+  #export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
 }
 
 precmd() {
