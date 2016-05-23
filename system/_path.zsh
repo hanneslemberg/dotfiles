@@ -1,5 +1,9 @@
 PATH="$ZSH/bin:$PATH"
 
+if [[ -d /usr/local/opt/gnu-tar/libexec/gnubin ]] then
+    PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+fi
+
 if [[ -d $HOME/bin/ ]] then
 	PATH="$HOME/bin:$PATH"
 fi
