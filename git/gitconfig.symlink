@@ -1,0 +1,17 @@
+# This is Git's per-user configuration file.
+[core]
+	user = Hannes Lemberg
+    email = hanneslemberg@users.noreply.github.com	
+    editor = /usr/bin/vim
+	ignorecase = false
+[user]
+	name = Hannes Lemberg
+    email = hanneslemberg@users.noreply.github.com	
+[push]
+	default = simple
+[rebase]
+	autosquash = true
+[pull]
+	rebase = false
+[diff]
+	compactionHeuristic = true
