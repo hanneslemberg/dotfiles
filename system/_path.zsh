@@ -12,4 +12,8 @@ if [[ -d $HOME/.local/bin/ ]] then
 	PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [[ -d $HOME/.composer/vendor/bin ]] then
+	PATH="$HOME/.composer/vendor/bin:$PATH"
+fi
+
 export PATH
