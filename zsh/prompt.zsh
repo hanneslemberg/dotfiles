@@ -81,8 +81,9 @@ function gitStashCount() {
   echo ''
 }
 
-export PROMPT=$'\n$(rb_prompt)in $(directory_name) $(git_dirty)$(need_push)\n› '
+export PROMPT=$'\n$(rb_prompt)in $(directory_name) $(git_dirty)$(need_push)\n%(?.$fg[green].$fg[red])›$reset_color '
 export RPROMPT='$(gitStashCount)'
+
 set_prompt () {
   #export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
 }
