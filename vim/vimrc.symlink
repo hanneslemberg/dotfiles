@@ -20,11 +20,10 @@ set noswapfile
 set hlsearch 
 set incsearch
 set smartcase
+set autoread
+set expandtab
+set ts=4
 
-" elm
-au BufWritePost *.elm make
-au FileType elm set makeprg=elm-make\ Main.elm
-"au FileType elm copen<CR><CRTL>WW
 
 " typescript
 au BufRead,BufNewFile *.ts set filetype=javascript
