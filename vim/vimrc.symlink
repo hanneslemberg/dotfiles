@@ -8,32 +8,27 @@ execute pathogen#infect()
 filetype plugin indent on
 
 syntax on 
-set number
-set smartindent
+
 set autoindent
-set expandtab
-set tabstop=4
-set ts=4
-set shiftwidth=4
-set expandtab
-set nowrap
-set noswapfile
 set autoread
-" search
-set hlsearch 
-set incsearch
-set smartcase
-set ruler 
-set showcmd
-set incsearch
+set colorcolumn=80
+set expandtab
 set hlsearch
-set autoread
-
-
-" elm
-" au BufWritePost *.elm make
-" au FileType elm set makeprg=make
-"au FileType elm copen<CR><CRTL>WW
+set iminsert=0
+set imsearch=0
+set incsearch
+set laststatus=2
+set noswapfile
+set nowrap
+set number
+set ruler 
+set shiftwidth=4
+set showcmd
+set smartcase
+set smartindent
+set tabstop=4
+set textwidth=80
+set ts=4
 
 " typescript
 au BufRead,BufNewFile *.ts set filetype=javascript 
@@ -43,19 +38,9 @@ au BufRead,BufNewFile *.ts set filetype=javascript
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 colo codefocus
-set colorcolumn=80
 
-" Always show a status line
-set laststatus=2
-
-set iminsert=0
-set imsearch=0
 highlight lCursor guifg=NONE guibg=Cyan
-set textwidth=80
 
-set nowrap
-set autoindent
-set smartindent
 
 highlight OverLength ctermbg=black ctermfg=red
 match OverLength /\%81v.\+/
