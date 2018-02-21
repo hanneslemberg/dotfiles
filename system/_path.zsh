@@ -16,4 +16,6 @@ if [[ -d $HOME/.composer/vendor/bin ]] then
 	PATH="$HOME/.composer/vendor/bin:$PATH"
 fi
 
+PATH="/usr/local/sbin:$PATH"
+
 export PATH
