@@ -16,6 +16,10 @@ if [[ -d $HOME/.composer/vendor/bin ]] then
 	PATH="$HOME/.composer/vendor/bin:$PATH"
 fi
 
+if [[ -d /usr/local/opt/ruby/bin ]] then
+	PATH="/usr/local/opt/ruby/bin:$PATH"
+fi
+
 PATH="/usr/local/sbin:$PATH"
 
 export PATH

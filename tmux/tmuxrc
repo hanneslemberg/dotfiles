@@ -56,3 +56,10 @@
 # bind '-' setw window-status-format '#I'\; setw window-status-current-format '#I'
 # bind '+' setw window-status-format '#I:#W#F'\; setw window-status-current-format '#I:#W#F'
 
+
+set-option -g mouse on
+set-window-option -g mouse on
+
+
+
+
