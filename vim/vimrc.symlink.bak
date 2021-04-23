@@ -1,13 +1,25 @@
 scriptencoding utf-8
 set encoding=utf-8
 set nocompatible
-set background=light " assume a dark background
+set background=dark " assume a dark background
 
-let g:film_noir_color='green' " also: 'green', 'blue' (default)
-colorscheme film_noir
+
+call plug#begin('~/.vim/plugged')
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'arnaud-lb/vim-php-namespace'
+call plug#end()
+
+" let g:film_noir_color='green' " also: 'green', 'blue' (default)
+" colorscheme film_noir 
 let mapleader=","
+
 filetype plugin indent on
-syntax on
+
+syntax on 
+
 set autoindent
 set autoread
 set colorcolumn=80
@@ -46,11 +58,10 @@ set makeprg=VIMFILE=%\ make
 map-silent <esc><esc> :noh<cr>
 
 " share clipboard between instances
-" set clipboard=unnamedplus
-" set clipboard=unnamed
+set clipboard=unnamedplus
 
 set cursorline
-" highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=233 guifg=NONE guibg=#121212
+highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=233 guifg=NONE guibg=#121212
 autocmd InsertEnter * highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=234 guifg=NONE guibg=#1c1c1c
 autocmd InsertLeave * highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=233 guifg=NONE guibg=#121212
 
@@ -128,10 +139,7 @@ au FileType javascript setlocal tags='./.src.ts.tags;/,./.vendor.ts.tags;/'
 
 " php
 au BufRead,BufNewFile *.php setlocal filetype=php
-
-" yaml
-au BufRead,BufNewFile *.yml setlocal filetype=yaml
-au BufRead,BufNewFile *.yaml setlocal filetype=yaml
+au FileType php setlocal tags=./.src.php.tags;/\ ./.vendor.php.tags;/\ ./.php.tags;/
 
 " log files
 autocmd BufRead,BufNewFile *.log setlocal filetype=log
@@ -144,11 +152,10 @@ au FileType go setlocal path+=$HOME/go/src/
 " au FileType go nmap <leader>f :w<CR>:!FORMATFILE="%" make format<CR>:e<CR>
 au FileType go setlocal tags=go.tags;/
 
-autocmd FileType js,ts let b:comment_leader = '// '
+autocmd FileType js,ts,php let b:comment_leader = '// '
 autocmd FileType sh let b:comment_leader = '# '
 autocmd FileType conf,fstab let b:comment_leader = '# '
 autocmd FileType vim let b:comment_leader = '" '
-autocmd FileType yaml let b:comment_leader = '# '
 
 noremap <silent> <leader>cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> <leader>cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
@@ -160,13 +167,13 @@ set backspace=indent,eol,start
 source $HOME/.vim/plugin/fzf.vim
 nmap <leader>p :FZF<CR>
 
-set completeopt=noinsert,menuone,noselect,preview
-autocmd FileType php setlocal omnifunc=phpactor#Complete
+imap <C-Space> <Plug>(asyncomplete_force_refresh)
+imap <Nul> <Plug>(asyncomplete_force_refresh)
 
+function! IPhpInsertUse()
+call PhpInsertUse()
+    call feedkeys('a',  'n')
+endfunction
 
-" restore last position on file load
-autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
-
+autocmd FileType php inoremap <leader>u <Esc>:call IPhpInsertUse()<CR>
+autocmd FileType php noremap <leader>u :call PhpInsertUse()<CR>

@@ -1,65 +1,41 @@
-# Original by Nicholas Marriott. Public domain.
+set -g base-index 1
+setw -g pane-base-index 1
+set -g bell-action none
+set -g allow-rename off
+setw -g remain-on-exit on
+setw -g window-status-current-style "underscore"
+setw -g window-status-activity-style "none"
+setw -g window-status-bell-style "none"
+setw -g monitor-activity
+set-option -g history-limit 100000
+bind-key r source-file ~/.tmux.conf \; display "Config reloaded!"
+bind-key s attach -c "#{pane_current_path}"\; display "Base directory changed"
+bind-key k send-keys -R \; clear-history \; display "Cleared"
 
-# # Default global options.
-# set-option -g base-index 1
-# set -g status-bg green
-# set -g status-right "%H:%M " # %d-%b-%y
-# set -g bell-action none
-# set -g lock-after-time 1800
-# set -g allow-rename off
-# 
-# # Default global window options.
-# setw -g remain-on-exit on
-# setw -g window-status-current-attr "underscore"
-# #setw -g xterm-keys on
-# 
-# # Prefix key.
-# set -g prefix C-a
-# unbind C-b
-# bind C-a send-prefix
-# 
-# # Keys to switch session.
-# bind Q switchc -t0
-# bind W switchc -t1
-# bind E switchc -t2
-# # Reload config with a key
-# bind-key r source-file ~/.tmux.conf \; display "Config reloaded!"
-# 
-# 
-# # Other key bindings.
-# bind F1 selectw -t:10
-# bind F2 selectw -t:11
-# bind F3 selectw -t:12
-# bind F4 selectw -t:13
-# bind F5 selectw -t:14
-# bind F6 selectw -t:15
-# bind F7 selectw -t:16
-# bind F8 selectw -t:17
-# bind F9 selectw -t:18
-# bind F10 selectw -t:19
-# bind F11 selectw -t:20
-# bind F12 selectw -t:21
-# 
-# bind m setw monitor-activity
-# 
-# bind y setw force-width 81
+bind f1 selectw -t:1
+bind f2 selectw -t:2
+bind f3 selectw -t:3
+bind f4 selectw -t:4
+bind f5 selectw -t:5
+bind f6 selectw -t:6
+bind f7 selectw -t:7
+bind f8 selectw -t:8
+bind f9 selectw -t:9
+bind f10 selectw -t:10
+bind f11 selectw -t:11
+bind f12 selectw -t:12
+# bind y setw force-width 121
 # bind u setw force-width 0
-# 
-# #bind -n F1 run-shell 'mpc toggle >/dev/null 2>&1'
-# #bind -n F2 run-shell 'mpc'
-# #bind -n F3 run-shell 'mpc prev >/dev/null 2>&1'
-# #bind -n F4 run-shell 'mpc next >/dev/null 2>&1'
-# #bind -n F5 run-shell 'mpc volume -5 >/dev/null 2>&1'
-# #bind -n F6 run-shell 'mpc volume +5 >/dev/null 2>&1'
-# 
-# Hide and show window name from status line
-# bind '-' setw window-status-format '#I'\; setw window-status-current-format '#I'
-# bind '+' setw window-status-format '#I:#W#F'\; setw window-status-current-format '#I:#W#F'
+setw -g mode-keys vi
+set -g mouse off
+setw -g mouse off
+bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "pbcopy"  \; display-message 'Text copied to clipboard!'
+bind-key -T copy-mode-vi v send-keys -X begin-selection
 
-
-set-option -g mouse on
-set-window-option -g mouse on
-
-
-
+# statusbar 
+set -g status-position bottom
+set -g status-justify left
+set -g status-left ''
+set -g status-right '%H:%M:%S'
+set -g status-left-length 20
 
